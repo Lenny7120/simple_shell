@@ -9,7 +9,7 @@
 int custom_help(char **args)
 {
 	char *builtin_func_list[] = {"cd", "env", "help", "exit"};
-	int i = 0;
+	unsigned long int i = 0;
 	(void)(**args);
 	printf("\n---help simple_shell---\n");
 	printf("Type a command and its arguments, then hit enter\n");
