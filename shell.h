@@ -11,15 +11,15 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 
-void interactive(void);
+void interactive(char *arg);
 char *readline(void);
 char **splitTerminalArgs(char *termArgs);
 int _execvp(const char *file, char *const argv[]);
-int executeArgs(char **args);
-int set_new_process(char **args);
+int executeArgs(char **args, char *arg);
+int set_new_process(char **args, char *arg);
 void displayCurrentDirectory(void);
 char *read_stream(void);
-void not_interactive(void);
+void not_interactive(char *arg);
 
 extern char **environ;
 

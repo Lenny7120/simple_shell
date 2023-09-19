@@ -5,7 +5,7 @@
 * Return: void
 */
 
-void interactive(void)
+void interactive(char *arg)
 {
 char *termArgs;
 char **argument;
@@ -15,7 +15,7 @@ do {
 printf("($) ");
 termArgs = readline();
 argument = splitTerminalArgs(termArgs);
-status = executeArgs(argument);
+status = executeArgs(argument, arg);
 free(termArgs);
 free(argument);
 if (status >= 0)

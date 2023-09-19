@@ -4,7 +4,7 @@
 *
 * Return: void
 */
-void not_interactive(void)
+void not_interactive(char *arg)
 {
 char *line;
 char **args;
@@ -14,7 +14,7 @@ do {
 printf("($) ");
 line = read_stream();
 args = splitTerminalArgs(line);
-status = executeArgs(args);
+status = executeArgs(args, arg);
 free(line);
 free(args);
 if (status >= 0)

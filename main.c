@@ -5,15 +5,17 @@
 * Return: 0
 */
 
-int main(void)
+int main(int argc, char *args[])
 {
-if (isatty(STDIN_FILENO) == 1)
+(void)argc;	
+
+if (isatty(STDIN_FILENO) == 0)
 {
-interactive();
+interactive(args[0]);
 }
 else
 {
-not_interactive();
+not_interactive(args[0]);
 }
 return (0);
 }

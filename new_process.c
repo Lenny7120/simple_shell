@@ -5,7 +5,7 @@
 *
 * Return: 1 if success, 0 otherwise.
 */
-int set_new_process(char **args)
+int set_new_process(char **args,char *arg)
 {
 pid_t pid;
 int status;
@@ -15,7 +15,7 @@ if (pid == 0)
 {
 if (_execvp(args[0], args) == -1)
 {
-perror("error in set_new_process: child process");
+perror(arg);
 }
 exit(EXIT_FAILURE);
 }

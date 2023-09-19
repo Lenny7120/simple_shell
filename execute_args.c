@@ -6,7 +6,7 @@
 * Return: 1 on sucess, 0 otherwise
 */
 
-int executeArgs(char **args)
+int executeArgs(char **args, char *arg)
 {
 char *builtin_func_list[] = {"cd", "env", "help", "exit"};
 int (*builtin_func[])(char **) = {
@@ -29,5 +29,5 @@ if (strcmp(args[0], builtin_func_list[i]) == 0)
 return ((*builtin_func[i])(args));
 }
 }
-return (set_new_process(args));
+return (set_new_process(args, arg));
 }
