@@ -11,7 +11,7 @@ char **args;
 int status = -1;
 
 do {
-displayCurrentDirectory();
+printf("($) ");
 line = read_stream();
 args = splitTerminalArgs(line);
 status = executeArgs(args);

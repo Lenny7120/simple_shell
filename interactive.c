@@ -12,7 +12,7 @@ char **argument;
 int status = -1;
 
 do {
-displayCurrentDirectory();
+printf("($) ");
 termArgs = readline();
 argument = splitTerminalArgs(termArgs);
 status = executeArgs(argument);
