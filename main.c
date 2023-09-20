@@ -1,19 +1,25 @@
 #include "shell.h"
 /**
-* main - run a simple shell
+* main - Execute Shell.
 *
-* Return: 0
+* Return: 0.
 */
-
 int main(void)
 {
-if (isatty(STDIN_FILENO) == 1)
+char str[BUFFER_SIZE];
+
+do {
+printf("$ ");
+fgets(str, BUFFER_SIZE, stdin);
+str[strlen(str) - 1] = '\0';
+if (strcmp(str, "exit") == 0)
 {
-interactive();
+	printf("\n");
+	break;
 }
-else
-{
-not_interactive();
-}
+execute_argument(str);
+printf("%s", str);
+} while (1);
+
 return (0);
 }
