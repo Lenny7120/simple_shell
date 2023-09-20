@@ -1,21 +1,33 @@
 #include "shell.h"
 /**
-* main - run a simple shell
+* main - Execute Shell.
 *
-* Return: 0
+* Return: Always returns 0.
 */
-
-int main(int argc, char *args[])
+int main(void)
 {
-(void)argc;	
-
-if (isatty(STDIN_FILENO) == 0)
+char str[BUFFER_SIZE];
+char *read;
+do {
+printf("$ ");
+read = fgets(str, BUFFER_SIZE, stdin);
+if (read == NULL) /* if getline fails */
 {
-interactive(args[0]);
+if (feof(stdin)) /* test for the eof */
+{
+printf("\n");
+exit(EXIT_FAILURE); /* we recieved an eof */
 }
 else
 {
-not_interactive(args[0]);
+perror("error while reading the line from stdin");
+exit(EXIT_FAILURE);
 }
+}
+
+execute_argument(str);
+printf("%s", str);
+} while (1);
+
 return (0);
 }
