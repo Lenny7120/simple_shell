@@ -1,38 +1,19 @@
 #include "shell.h"
 /**
-* main - Execute Shell.
+* main - run a simple shell
 *
-* Return: 0.
+* Return: 0
 */
+
 int main(void)
 {
-char str[BUFFER_SIZE];
-char *read;
-do {
-printf("$ ");
-read = fgets(str, BUFFER_SIZE, stdin);
-str[strlen(str) - 1] = '\0';
-if (read == NULL) /* if getline fails */
+if (isatty(STDIN_FILENO) == 1)
 {
-if (feof(stdin)) /* test for the eof */
-{
-printf("\n");
-exit(EXIT_FAILURE); /* we recieved an eof */
+interactive();
 }
 else
 {
-perror("error while reading the line from stdin");
-exit(EXIT_FAILURE);
+not_interactive();
 }
-}
-if (strcmp(str, "exit") == 0)
-{
-	printf("\n");
-	break;
-}
-execute_argument(str);
-printf("%s", str);
-} while (1);
-
 return (0);
 }
