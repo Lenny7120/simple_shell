@@ -8,7 +8,8 @@
 void execute_argument(char *argument)
 {
     pid_t p = fork();
-    char *executable, *path, *full_argument, *token;
+    char *tokens[64];
+    char *exe, *path, *full_argument, *token;
     char *env[] = {NULL};
     int i = 0;
 
@@ -18,7 +19,6 @@ void execute_argument(char *argument)
     }
     else if (p == 0)
     {
-        char *args[64];
         token = strtok(argument, TOK_DELIM);
         while (token != NULL)
         {
@@ -26,21 +26,21 @@ void execute_argument(char *argument)
             {
                 break;
             }
-            args[i++] = token;
-            token = strtok(NULL, " ");
+            tokens[i++] = token;
+            token = strtok(NULL, TOK_DELIM);
         }
-        args[i] = NULL;
-        executable = args[0];
+        tokens[i] = NULL;
+        exe = tokens[0];
         path = "/bin/";
-        full_argument = malloc(strlen(path) + strlen(executable) + 1);
+        full_argument = malloc(strlen(path) + strlen(exe) + 1);
         if (full_argument == NULL)
         {
             perror("Memory allocation failed");
             exit(EXIT_FAILURE);
         }
         strcpy(full_argument, path);
-        strcat(full_argument, executable);
-        if (execve(full_argument, args, env) == -1)
+        strcat(full_argument, exe);
+        if (execve(full_argument, tokens, env) == -1)
         {
             perror("argument execution failed");
             exit(EXIT_FAILURE);
