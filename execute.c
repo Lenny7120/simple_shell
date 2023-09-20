@@ -11,6 +11,7 @@ char *tokens[64];
 char *exe, *path, *memory, *token;
 char *env[] = {NULL};
 int i = 0;
+int status;
 
 if (p == -1)
 	perror("Forking failed");
@@ -40,10 +41,6 @@ exit(EXIT_FAILURE);
 }
 free(memory);
 }
-else
-{
-int status;
 waitpid(p, &status, 0);
-}
 }
 
