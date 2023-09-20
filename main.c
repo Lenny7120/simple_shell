@@ -22,7 +22,9 @@ int main(void)
 
     while (1)
     {
+        /* prints the prompt */
         printf("$ ");
+        /* basically my getline */
         fgets(input, BUFFER_SIZE, stdin);
 
         input[strlen(input) - 1] = '\0';
@@ -31,14 +33,6 @@ int main(void)
         {
             printf("Exiting the shell...\n");
             break;
-        }
-        else if (strncmp(input, "exit ", 5) == 0)
-        {
-            /* Handle exit with status code */
-            int status_code = atoi(input + 5);
-
-            printf("Exiting the shell with status code: %d\n", status_code);
-            exit(status_code);
         }
 
         execute_command(input);
